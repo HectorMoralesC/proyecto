@@ -17,11 +17,6 @@
         <div class="pokemon type">
           <span id="pokemonType"></span>
         </div>
-      </div>
-      <div class="buttons">
-        <div class="button" onClick="previous()">Anterior</div>
-        <div class="button" onClick="next()">Proximo</div>
-      </div>
       <div class="api">
       </div>
       <div class="center dev">

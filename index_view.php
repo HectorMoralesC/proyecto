@@ -1,37 +1,3 @@
-<link rel="stylesheet" href="ejemplopoke.css">
-<body onload="getPokemon()">
-    <div class="pokedex">
-      <div class="info-display center">
-        <form name="pokemonKeySend" method="POST" action="">
-          <input type="text" id="pokemonId" name="pokemonId" class="id-display" value="" onKeyUp="pokemonKeyId()"/>
-        </form>
-        <div class="name-display">
-          <b id="name-display"></b>
-        </div>
-      </div>
-      <div style="clear: both;"></div>
-      <div class="pokemon-display">
-        <div class="pokemon">
-          <img id="imgPokemon" src="" width="100%" height="100%">
-        </div>
-        <div class="pokemon type">
-          <span id="pokemonType"></span>
-        </div>
-      </div>
-      <div class="buttons">
-        <div class="button" onClick="previous()">Anterior</div>
-        <div class="button" onClick="next()">Proximo</div>
-      </div>
-      <div class="api">
-      </div>
-      <div class="center dev">
-        </a>
-      </div>
-    </div>
-    <script src="ejemplopoke.js"></script>
-  </body>
-
-
 
   <?php 
 
@@ -44,7 +10,7 @@
 		$codigo = $_POST['codigo'];
 		//Error si no hay "codigo" seleccionada
 		if (empty($codigo)) {
-			$errores .= 'Por favor selecciona un cÃ³digo';
+			$errores .= 'Por favor selecciona un código';
 		}
 		//Si han dado una codigo, cambiamos el $enviado a true, es decir, se enviarÃ¡ el formulario 
 		if(!$errores){
@@ -72,7 +38,7 @@
 			array(':codigo'=> $codigo)
 		);
 
-		//Otro paquete de informaciÃ³n en un array del registro de la ID seleccionada por el formulario
+		//Otro paquete de información en un array del registro de la ID seleccionada por el formulario
 		$resultados = $statement->fetch();
 		
 		//Como mostramos los datos

@@ -6,15 +6,9 @@
         echo "Error: " . $e->getMessage();
     }
 
-    //Buscar datos PO
-    $statementPokedex = $conexion->query('SELECT id FROM pokedex');
-    //Otro paquete de informaci�n en un array del registro de la ID seleccionada por el formulario
-    $resultadosPokedex = $statementPokedex->fetchAll();
-    //Como mostramos los datos
-
     //Buscar datos del formulario "READ" SQL
     $statementEntrenador = $conexion->query('SELECT id FROM entrenador');
-    //Otro paquete de informaci�n en un array del registro de la ID seleccionada por el formulario
+    //Otro paquete de información en un array del registro de la ID seleccionada por el formulario
     $resultadosEntrenador = $statementEntrenador->fetchAll();
 
 ?>
