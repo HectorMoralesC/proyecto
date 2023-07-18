@@ -25,3 +25,7 @@
     </div>
     <script src="javaScript.js"></script>
   </body>
+
+  <?php 
+	require 'consulta.php';
+?>
