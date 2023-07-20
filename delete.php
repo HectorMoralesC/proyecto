@@ -64,5 +64,6 @@ $conexion = null;
     ID del Entrenador: <input type="number" name="delete" required><br>
     <input type="submit" value="Eliminar">
 </form>
+    <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>
 </html>
