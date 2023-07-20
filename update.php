@@ -13,12 +13,11 @@ if (isset($_POST["update"])) {
     $id_entrenador = $_POST["id_entrenador"];
     $nombre = $_POST["nombre"];
     $nivel = $_POST["nivel"];
-    $equipo = $_POST["equipo"];
 
-    $sql = "UPDATE entrenador SET nombre=?, nivel=?, equipo=? WHERE id_entrenador=?";
+    $sql = "UPDATE entrenador SET nombre=?, nivel=? WHERE id_entrenador=?";
 
     $stmt = $conexion->prepare($sql);
-    $stmt->execute([$nombre, $nivel, $equipo, $id_entrenador]);
+    $stmt->execute([$nombre, $nivel, $id_entrenador]);
 
     echo "Información del Pokémon actualizada exitosamente.";
 }
@@ -121,13 +120,12 @@ input[type="submit"] {
                 <td><input type="number" name="nivel" required></td>
             </tr>
             <tr>
-                <th>Equipo</th>
-                <td><textarea name="equipo" required></textarea></td>
-            </tr>
-            <tr>
                 <td colspan="2"><input type="submit" name="update" value="Actualizar"></td>
             </tr>
         </form>
     </table>
+
+    
+    <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>
 </html>

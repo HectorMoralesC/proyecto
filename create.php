@@ -77,6 +77,7 @@ $conexion = null;
         Nivel: <input type="number" name="nivel" required><br>
         Equipo: <textarea name="equipo" required></textarea><br>
         <input type="submit" name="create" value="Agregar">
-</form>
+    </form>
+    <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>
 </html>

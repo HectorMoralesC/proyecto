@@ -54,16 +54,15 @@ try {
         <tr>
             <th>nombre</th>
             <th>nivel</th>
-            <th>equipo</th>
         </tr>
         <?php foreach ($stmt as $entrenador): ?>
             <tr>
                 <td><?php echo $entrenador['nombre']; ?></td>
                 <td><?php echo $entrenador['nivel']; ?></td>
-                <td><?php echo $entrenador['equipo']; ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
+    <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>
 </html>
 

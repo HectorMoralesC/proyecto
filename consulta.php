@@ -18,7 +18,7 @@ $conexion = null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>POKEDEX</title>
 </head>
 <body>
     <header>
@@ -30,5 +30,6 @@ $conexion = null;
                 <a href="delete.php">Elimina un entrenador</a>
             </ul>
         </nav>
+        <a href="/proyecto/inicio-registro/cerrar.php">Cerrar sesion</a>
     </header>
 

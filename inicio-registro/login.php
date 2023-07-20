@@ -2,34 +2,34 @@
 
 // Comprobamos si ya tiene una sesion
 # Si ya tiene una sesion redirigimos al contenido, para que no pueda acceder al formulario
-if (isset($_SESSION['inicio'])) {
-	header('Location: index1.php');
+if (isset($_SESSION['nombre'])) {
+	header('Location: index.php');
 	die();
 }
 
 // Comprobamos si ya han sido enviado los datos
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$usuario = filter_var(strtolower($_POST['inicio']), FILTER_SANITIZE_STRING);
-	$contraseña = $_POST['contraseña'];
-	$contraseña = hash('123456', $contraseña);
+	$nombre = strtolower($_POST['nombre']);
+	$password = $_POST['password'];
+	$password = hash('sha512', $password);
 
 	// Nos conectamos a la base de datos
 	try {
-		$conexion = new PDO('mysql:host=localhost;dbname=inicio_sesion', 'root', '');
+		$conexion = new PDO('mysql:host=localhost;dbname=proyectopokedex', 'root', '');
 	} catch (PDOException $e) {
 		echo "Error:" . $e->getMessage();
 	}
 
-	$statement = $conexion->prepare('SELECT * FROM inicio WHERE inicio = :inicio AND contraseña = :contraseña');
+	$statement = $conexion->prepare('SELECT * FROM entrenador WHERE nombre = :nombre AND pass = :password');
 	$statement->execute(array(
-			':usuario' => $usuario,
-			':contraseña' => $contraseña
+			':nombre' => $nombre,
+			':password' => $password
 		));
 
 	$resultado = $statement->fetch();
 	if ($resultado !== false) {
-		$_SESSION['usuario'] = $usuario;
-		header('Location: index1.php');
+		$_SESSION['nombre'] = $nombre;
+		header('Location: index.php');
 	} else {
 		$errores = '<li>Datos incorrectos</li>';
 	}

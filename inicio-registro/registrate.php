@@ -2,7 +2,7 @@
 
 // Comprobamos si ya tiene una sesion
 # Si ya tiene una sesion redirigimos al contenido, para que no pueda volver a registrar un usuario.
-if (isset($_SESSION['inicio'])) {
+if (isset($_SESSION['nombre'])) {
 	header('Location: index.php');
 	die();
 }
@@ -10,9 +10,9 @@ if (isset($_SESSION['inicio'])) {
 // Comprobamos si ya han sido enviado los datos
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Validamos que los datos hayan sido rellenados
-	$usuario = filter_var(strtolower($_POST['inicio']), FILTER_SANITIZE_STRING);
-	$password = $_POST['contraseña'];
-	$password2 = $_POST['contraseña2'];
+	$nombre = $_POST['nombre'];
+	$password = $_POST['password'];
+	$password2 = $_POST['password2'];
 
 // // Tambien podemos limpiar mediante las funciones
 // 	# El problema es que si lo hacemos de esta forma no estamos eliminando caracteres especiales, solo los transformamos.
@@ -27,19 +27,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$errores = '';
 
 	// Comprobamos que ninguno de los campos este vacio.
-	if (empty($inicio) or empty($contrseña) or empty($contraseña)) {
+	if (empty($nombre) or empty($password) or empty($password2)) {
 		$errores = '<li>Por favor rellena todos los datos correctamente</li>';
 	} else {
 
 		// Comprobamos que el usuario no exista ya.
 		try {
-			$conexion = new PDO('mysql:host=localhost;dbname=inicio_sesion', 'root', '');
+			$conexion = new PDO('mysql:host=localhost;dbname=proyectopokedex', 'root', '');
 		} catch (PDOException $e) {
 			echo "Error:" . $e->getMessage();
 		}
 
-		$statement = $conexion->prepare('SELECT * FROM inicio WHERE usuario = :usuario LIMIT 1');
-		$statement->execute(array(':usuario' => $usuario));
+		$statement = $conexion->prepare('SELECT * FROM entrenador WHERE nombre = :name LIMIT 1');
+		$statement->execute(array(':name' => $nombre));
 
 		// El metodo fetch nos va a devolver el resultado o false en caso de que no haya resultado.
 		$resultado = $statement->fetch();
@@ -52,21 +52,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// Hasheamos nuestra contraseña para protegerla un poco.
 		# OJO: La seguridad es un tema muy complejo, aqui solo estamos haciendo un hash de la contraseña,
 		# pero esto no asegura por completo la informacion encriptada.
-		$contrseña = hash('sha512', $contraseña);
-		$contraseña2 = hash('sha512', $contraseña2);
+		$password = hash('sha512', $password);
+		$password2 = hash('sha512', $password2);
 
 		// Comprobamos que las contraseñas sean iguales.
-		if ($contrseña != $contraseña2) {
+		if ($password != $password2) {
 			$errores.= '<li>Las contraseñas no son iguales</li>';
 		}
 	}
 
 	// Comprobamos si hay errores, sino entonces agregamos el usuario y redirigimos.
 	if ($errores == '') {
-		$statement = $conexion->prepare('INSERT INTO inicio (id_registro, inicio, contraseña) VALUES (null, :inicio, :contrseña)');
+		$statement = $conexion->prepare('INSERT INTO entrenador (id_entrenador, nombre, pass, nivel) VALUES (null, :name, :pass, 1)');
 		$statement->execute(array(
-				':inicio' => $inicio,
-				':contraseña' => $contraseña
+				':name' => $nombre,
+				':pass' => $password
 			));
 
 		// Despues de registrar al usuario redirigimos para que inicie sesion.
@@ -76,5 +76,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
-require 'inicio/registrate.inicio.php';
+require 'views/registrate.view.php';
 ?>
