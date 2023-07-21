@@ -1,6 +1,6 @@
 
-<?php
 
+<?php
 // Conexión a la base de datos
 try {
     $conexion = new PDO('mysql:host=localhost;dbname=proyectopokedex', 'root', '');
@@ -24,9 +24,9 @@ $conexion = null;
     <header>
         <nav>
             <ul> 
-                <a href="create.php">Crea un entrenador</a>
+                <a href="create.php">Captura tus pokemons</a>
                 <a href="read.php">Entrenadores</a>
-                <a href="update.php">Actualizar Pokemon</a>
+                <a href="update.php">Actualizar Entrenador</a>
                 <a href="delete.php">Elimina un entrenador</a>
             </ul>
         </nav>

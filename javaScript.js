@@ -42,3 +42,25 @@ function pokemonKeyId() {
     pokemonTypes = JSON.parse(typesJson)                     
     pokemonData.types.map(item => document.getElementById("pokemonType").innerHTML += "<img src="+pokemonTypes[item.type.name]+" height=50>")
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -59,7 +59,7 @@ $conexion = null;
 </head>
 <body>
     <!-- Formulario para eliminar un Pokemon -->
-<h2>Eliminar Pokemon</h2>
+<h2>Eliminar Entrenador</h2>
 <form action="" method="GET">
     ID del Entrenador: <input type="number" name="delete" required><br>
     <input type="submit" value="Eliminar">
