@@ -18,7 +18,7 @@
 		}
 	}
 
-	require 'index_view.php';
+	// require 'index_view.php';
 
 	//A partir del envio del formulario, se conecta y envia  a la base de datos esa ID
 	if ($enviado){

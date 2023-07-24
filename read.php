@@ -1,4 +1,13 @@
 <?php
+
+// Comprobamos tenga sesion, si no entonces redirigimos y MATAMOS LA EJECUCION DE LA PAGINA.
+if (isset($_SESSION['nombre'])) {
+	require 'views/contenido.view.php';
+} else {
+	header('Location: login.php');
+	die();
+}
+
 // Conexión a la base de datos
 try {
     $conexion = new PDO('mysql:host=localhost;dbname=proyectopokedex', 'root', '');
@@ -18,35 +27,38 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
+       body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    color: #333;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
-        th {
-            background-color: #5F9EA0;
-            color: #fff;
-        }
+th {
+    background-color: #00CED1; /* Pokémon-themed color */
+    color: #fff;
+}
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-        tr:hover {
-            background-color: #ddd;
-        }
+tr:hover {
+    background-color: #ddd;
+}
+
     </style>
 </head>
 <body>

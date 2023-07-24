@@ -1,4 +1,12 @@
 <?php 
+// Comprobamos tenga sesion, si no entonces redirigimos y MATAMOS LA EJECUCION DE LA PAGINA.
+if (isset($_SESSION['nombre'])) {
+	require 'views/contenido.view.php';
+} else {
+	header('Location: login.php');
+	die();
+}
+
 
 // Conexion a la base de datos
 try {
@@ -25,33 +33,35 @@ if (isset($_POST["update"])) {
 $conexion = null;
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <style>
         body {
-    background-color: #e8e8e8;
-    font-family: Arial, sans-serif;
-}
-
-h2 {
+    background-image:url(https://anexogeek.com/wp-content/uploads/2022/09/6cfe7c143819d5edb18aa9c8e9d5da05.jpg);
     text-align: center;
-    color: #00CED1; /* Color azul turquesa */
-}
+    font-family: Arial, sans-serif;
+            }
 
-table {
+        h2 {
+    text-align: center;
+    color: black; /* Color azul turquesa */
+            }
+
+        h3{
+    color: red;
+            }
+        table {
     width: 400px;
     margin: 0 auto;
     border-collapse: collapse;
     border: 2px solid #000000;
     background-color: #FFFFFF;
-}
+            }
 
 th {
-    background-color: #4682B4; /* Color azul turquesa */
-    color: #FFFFFF;
+    background-color: #4684B4; /* Color azul turquesa */
+    color: black;
     padding: 10px;
 }
 
@@ -79,28 +89,18 @@ input[type="submit"] {
 }
 
 /* Estilos adicionales para el estilo Pokédex */
-body {
-    background-image: url('pokedex_bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
 
 table {
-    background-color: #5F9EA0;
+    background-color: #4682B4;
 }
 
 th {
-    background-color: #5F9EA0; /* Color azul turquesa */
+    background-color: #4682B4; /* Color azul turquesa */
 }
 
 input[type="submit"] {
     background-color: #00CED1; /* Color azul turquesa */
 }
-
-
-
-
     </style>
 </head>
 <body>
@@ -126,6 +126,6 @@ input[type="submit"] {
     </table>
 
     
-    <a href="/proyecto"><h3>Volver a POKEDEX</h3>
+    <a href="/proyecto"><h3>VOLVER A LA POKEDEX</h3>
 </body>
 </html>

@@ -40,5 +40,20 @@
 		</p>
 
 	</div>
+	<script>
+        // Detectar el evento "keydown" en los campos de entrada
+        document.addEventListener("keydown", function (event) {
+            // Verificar si la tecla presionada es la tecla "Enter"
+            if (event.key === "Enter") {
+                // Obtener el elemento que tiene el foco actualmente
+                const focusedElement = document.activeElement;
+
+                // Si el elemento con el foco es un campo de entrada, enviar el formulario
+                if (focusedElement.tagName === "INPUT") {
+                    document.login.submit();
+                }
+            }
+        });
+    </script>
 </body>
 </html>

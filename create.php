@@ -26,9 +26,6 @@ if (isset($_POST["create"])) {
     echo "Pokémon capturado exitosamente.";
 }
 
-
-
-
 // Cerrar la conexión a la base de datos
 $conexion = null;
 ?>
@@ -37,35 +34,50 @@ $conexion = null;
 <html lang="en">
 <head>
 <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        
-        h2 {
-            color: #5F9EA0;
-        }
-        
-        form {
-            margin-bottom: 20px;
-        }
-        
-        input[type="number"],
-        input[type="text"],
-        textarea {
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-        
-        input[type="submit"] {
-            background-color: #17e628;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+       body {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    color: #333;
+}
+
+h2 {
+    color: #00CED1; /* Pokémon-themed color */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="number"],
+input[type="text"],
+textarea {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #4682B4; /* Pokémon-themed color */
+    border-radius: 4px;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #27408B; /* Pokémon-themed color */
+}
+
+input[type="submit"] {
+    background-color: #00CED1; /* Pokémon-themed color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #769766; /* Pokémon-themed color */
+}
+
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,8 +88,6 @@ $conexion = null;
     <h2>Capturar Pokémon</h2>
     <form action="" method="POST">
        ID Pokémon: <input type="number" name="id_pokemon" required><br>
-   
-
         <input type="submit" name="create" value="Capturar">
     </form>
     <a href="/proyecto"><h3>Volver a POKEDEX</h3>

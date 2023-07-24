@@ -9,13 +9,16 @@
 body {
 	font-size: 16px;
 	font-family: 'Raleway', sans-serif;
-	background: #1B1D35;
-	color:#fff;
+	background-image: url(https://i.pinimg.com/originals/d7/76/10/d77610d6df365e7565c4cd7a6fe421f6.gif);
+	color: #fff;
+	background-repeat: no-repeat;
+	background-size: cover; /* Adjust the GIF to cover the whole screen */
 }
 
 a {
 	text-decoration: none;
-	color:#B8711B;
+	color: #1c9b86;
+	
 }
 
 a:hover {
@@ -30,21 +33,21 @@ a:hover {
 
 .titulo {
 	font-weight: 300;
-	color: #B8711B;
+	color: #ffffff;
 	text-align: center;
 	margin: 60px 0 30px 0;
 }
 
 .border {
-	border:none;
-	margin-bottom: 5px; 
-	border-top:10px solid #B8711B;
+	border: none;
+	margin-bottom: 5px;
+	border-top: 10px solid #fcfffd;
 	background: none;
-	color:none;
+	color: none;
 }
 
 .formulario {
-	background: #2C2C47;
+	background: #00CED1;
 	padding: 30px;
 	margin-bottom: 30px;
 }
@@ -62,6 +65,7 @@ a:hover {
 	line-height: 18px;
 	border: none;
 	vertical-align: top;
+	color: #503413; /* Pokémon-themed color */
 }
 
 .formulario .icono {
@@ -73,7 +77,7 @@ a:hover {
 	line-height: 18px;
 	background: #c8c8c8;
 	display: inline-block;
-	color:#6b6b6b;
+	color: #6b6b6b;
 	vertical-align: top;
 }
 
@@ -105,7 +109,7 @@ a:hover {
 }
 
 .formulario .error ul li {
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
 }
 
 .formulario .submit-btn {
@@ -115,10 +119,10 @@ a:hover {
 	max-height: 48px;
 	font-size: 18px;
 	line-height: 18px;
-	background: #679863;
+	background: #637198;
 	display: inline-block;
-	color:#fff;
-	background: #769766;
+	color: #fff;
+	background: #0b0eeb;
 	cursor: pointer;
 
 	-webkit-border-radius: 0 3px 3px 0;
@@ -134,7 +138,8 @@ a:hover {
 
 .texto-registrate a {
 	display: block;
-	font-size: 18px;
+	font-size: 25px;
+	color: #ff0000; /* Pokémon-themed color */
 }
 
 .contenido article {
@@ -142,7 +147,7 @@ a:hover {
 	background: #fff;
 }
 
-.contenido article p{
+.contenido article p {
 	margin-bottom: 10px;
-	color:#000;
+	color: #000; /* Pokémon-themed color */
 }
