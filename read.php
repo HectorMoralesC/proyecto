@@ -16,10 +16,16 @@ $sql1 = "SELECT * FROM entrenador WHERE id_entrenador = $identrenadoractual ";
     $sql = "SELECT * FROM entrenador";
     $stmt = $conexion->query($sql);
     
-$sqlCapturas = "SELECT * FROM capturas WHERE id_captura = 1";
+// Obtener información de capturas
+$sqlCapturas = "SELECT capturas.id_captura, capturas.id_pokemon, entrenador.nombre AS nombre_entrenador, pokedex.name AS pokemons_capturados
+               FROM (entrenador
+               INNER JOIN capturas ON entrenador.id_entrenador = capturas.id_entrenador)
+               INNER JOIN pokedex ON capturas.id_pokemon = pokedex.number
+               WHERE entrenador.id_entrenador = $identrenadoractual
+               ORDER BY capturas.id_captura";
 $queryCaptura = $conexion->query($sqlCapturas);
-$resultadoCapturas = $queryCaptura -> fetch();
-var_dump($resultadoCapturas);
+$resultadoCapturas = $queryCaptura->fetchAll();
+//var_dump($resultadoCapturas);
     
 ?>
 <!DOCTYPE html>
@@ -104,17 +110,17 @@ div {
 </br>
     <table>
         <tr>
-            <th>Entrenador</th>
-            <th>Nivel</th>
+            <th>Número Captura</th>
+            <th>Pokémon</th>
             <th>Imagen</th>
         </tr>
-        <?php foreach ($stmt as $entrenador): ?>
-            <tr>
-                <td><?php echo $resultado['nombre']; ?></td>
-                <td><?php echo $entrenador['nivel']; ?></td>
-                <td> <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php echo $resultadoCapturas[2]-13 ?>.png"> </td>
-            </tr>
-        <?php endforeach; ?>
+        <?php foreach ($resultadoCapturas as $captura): ?> <!-- Utilizamos $resultadoCapturas en lugar de $stmt -->
+        <tr>
+            <td><?php echo $captura['id_captura']; ?></td> <!-- Utilizamos el nombre del entrenador de la captura -->
+            <td><?php echo $captura['pokemons_capturados']; ?></td> <!-- Mostramos el nombre del Pokémon capturado -->
+            <td> <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<?php echo $captura['id_pokemon']; ?>.png"> </td> <!-- Ajustamos el índice para obtener el número correcto del Pokémon -->
+        </tr>
+    <?php endforeach; ?>
     </table>
     <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>

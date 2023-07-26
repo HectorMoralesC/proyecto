@@ -46,7 +46,7 @@ $conexion = null;
         <nav>
             <ul> 
                 <a href="create.php">Captura tus pokemons</a>
-                <a href="read.php">Entrenadores</a>
+                <a href="read.php">Pokémons Capturados</a>
                 <a href="update.php">Actualizar Entrenador</a>
                 <a href="delete.php">Elimina un entrenador</a>
             </ul>

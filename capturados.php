@@ -14,8 +14,10 @@ try {
 $sql1 = "SELECT * FROM entrenador WHERE id_entrenador = $identrenadoractual ";
     $stmt = $conexion->query($sql1);
     $resultado = $stmt -> fetch();
-// Operación CREATE - Agregar un nuevo Pokémon
-if (isset($_POST["create"])) {
+
+
+//Operación CREATE - Agregar un nuevo Pokémon
+/*if (isset($_POST["create"])) {
     $id_pokemon = $_POST["id_pokemon"];
   
     $sql = "INSERT INTO capturas VALUES (NULL, '$identrenadoractual', :id_pokemon)";
@@ -27,8 +29,23 @@ if (isset($_POST["create"])) {
 
     
     echo "Pokémon capturado exitosamente.";
-}
+}*/
 
+
+$name = "SELECT pokedex.name, capturas.id_captura
+FROM pokedex
+INNER JOIN capturas ON pokedex.number = capturas.id_pokemon;";
+
+$sqlpokes = "SELECT pokedex.name FROM pokedex";
+$consultapokes = $conexion->query($sqlpokes);
+$pokemons = $consultapokes -> fetchAll();
+// var_dump($pokemons);
+
+
+    $stmt = $conexion->query($name);
+    $resultadoname = $stmt -> fetch();
+
+    $sql = "INSERT INTO capturas VALUES (NULL, '$identrenadoractual', :id_pokemon)";
 // Cerrar la conexión a la base de datos
 $conexion = null;
 ?>
@@ -121,15 +138,27 @@ div {
     </tr>
 </table>
 </div>
-        <!-- Formulario para agregar un nuevo Pokémon -->
+        <!-- Formulario para agregar un nuevo Pokémon  -->
     <h2>Capturar Pokémon</h2>
-    <form action="" method="POST">
+    <!--<form action="" method="POST">
        ID Pokémon: <input type="number" name="id_pokemon" required><br/>
         <input type="submit" name="create" value="Capturar">
-    </form>
+    </form>-->
+
+     Selecciona un Pokemon para atrapar: 
+    <form action="capturados.php" method="get">
+			<select>
+				<option value=""></option>
+				<?php foreach ($pokemons as $pokemon): ?>
+					<option value="<?php echo $pokemon['id']; ?>">
+						<?php echo $pokemon['name']; ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+            <input type="submit" name="submit" class="btn btn-primary" value="Capturar">
+        </form> 
+
     <!-- Botón para volver a inicio -->
     <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>
 </html>
-
-
