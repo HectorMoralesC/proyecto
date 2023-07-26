@@ -1,4 +1,5 @@
 <?php
+//Mantener sesion iniciada
 session_start();
 $identrenadoractual = $_SESSION["id_entrenador"];
 // Conexión a la base de datos
@@ -9,11 +10,12 @@ try {
     echo "Error: " . $e->getMessage();
     die();
 }
-
+//Tabla inicio sesión
+$sql1 = "SELECT * FROM entrenador WHERE id_entrenador = $identrenadoractual ";
+    $stmt = $conexion->query($sql1);
+    $resultado = $stmt -> fetch();
 // Operación CREATE - Agregar un nuevo Pokémon
 if (isset($_POST["create"])) {
-    //$id_captura = $_POST["id_captura"];
-    //$id_entrenador = $_POST["id_entrenador"];
     $id_pokemon = $_POST["id_pokemon"];
   
     $sql = "INSERT INTO capturas VALUES (NULL, '$identrenadoractual', :id_pokemon)";
@@ -22,6 +24,7 @@ if (isset($_POST["create"])) {
     $stmt->execute(
         array(':id_pokemon'=> $id_pokemon)
     );
+
     
     echo "Pokémon capturado exitosamente.";
 }
@@ -77,6 +80,27 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #769766; /* Pokémon-themed color */
 }
+div {
+        width: 100 px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+        background-color: #5F9EA0; /* Pokémon-themed color */
+        }
+
+
+        th {
+        background-color: #4682B4; /* Pokémon-themed color */
+        color: #fff;
+        padding: 10px;
+        }
+
+        td {
+        border: 1px solid #000;
+        padding: 10px;
+        }
 
     </style>
     <meta charset="UTF-8">
@@ -84,12 +108,26 @@ input[type="submit"]:hover {
     <title>Capturar Pokémon</title>
 </head>
 <body>
+<div>
+    <!--Tabla inicio sesión-->
+<table>
+    <tr>
+        <th>nombre</th>
+        <th>nivel</th>
+    </tr>
+    <tr>
+                <td><?php echo $resultado['nombre']; ?></td>
+                <td><?php echo $resultado['nivel']; ?></td>
+    </tr>
+</table>
+</div>
         <!-- Formulario para agregar un nuevo Pokémon -->
     <h2>Capturar Pokémon</h2>
     <form action="" method="POST">
-       ID Pokémon: <input type="number" name="id_pokemon" required><br>
+       ID Pokémon: <input type="number" name="id_pokemon" required><br/>
         <input type="submit" name="create" value="Capturar">
     </form>
+    <!-- Botón para volver a inicio -->
     <a href="/proyecto"><h3>Volver a POKEDEX</h3>
 </body>
 </html>

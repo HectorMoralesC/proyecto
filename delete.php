@@ -1,6 +1,18 @@
+
 <?php
+session_start();
 $identrenadoractual = $_SESSION["id_entrenador"];
-  
+// Conexion a la base de datos
+try {
+    $conexion = new PDO('mysql:host=localhost;dbname=proyectopokedex', 'root', '');
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e){
+    echo "Error: " . $e->getMessage();
+    die();
+}
+$sql1 = "SELECT * FROM entrenador WHERE id_entrenador = $identrenadoractual ";
+    $stmt = $conexion->query($sql1);
+    $resultado = $stmt -> fetch();
 // Operacion DELETE - Eliminar un Pokemon
 if (isset($_GET["delete"])) {
     $id_entrenador = $_GET["delete"];
@@ -19,39 +31,54 @@ $conexion = null;
 <html lang="en">
 <head>  <style>
         body {
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    padding: 20px;
-    color: #333;
-    background-image: url('pokedex_bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
 
-h2 {
-    color: #4682B4; /* Pokémon-themed color */
-}
+        h2 {
+            color: #5F9EA0;
+        }
 
-form {
-    margin-bottom: 20px;
-}
+        form {
+            margin-bottom: 20px;
+        }
 
-input[type="number"],
-input[type="text"] {
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #4682B4; /* Pokémon-themed color */
-}
+        input[type="number"],
+        input[type="text"] {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
 
-input[type="submit"] {
-    background-color: #00CED1; /* Pokémon-themed color */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+        input[type="submit"] {
+            background-color: #17e628;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        div {
+        width: 100 px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+        background-color: #5F9EA0; /* Pokémon-themed color */
+        }
+
+
+        th {
+        background-color: #4682B4; /* Pokémon-themed color */
+        color: #fff;
+        padding: 10px;
+        }
+
+        td {
+        border: 1px solid #000;
+        padding: 10px;
+        }
 
     </style>
     <meta charset="UTF-8">
@@ -59,6 +86,7 @@ input[type="submit"] {
     <title>Document</title>
 </head>
 <body>
+<div>
 <table>
     <tr>
         <th>nombre</th>
@@ -69,6 +97,7 @@ input[type="submit"] {
                 <td><?php echo $resultado['nivel']; ?></td>
     </tr>
 </table>
+</div>
     <!-- Formulario para eliminar un Pokemon -->
 <h2>Eliminar Entrenador</h2>
 <form action="" method="GET">

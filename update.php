@@ -1,12 +1,6 @@
 <?php 
-// Comprobamos tenga sesion, si no entonces redirigimos y MATAMOS LA EJECUCION DE LA PAGINA.
-if (isset($_SESSION['nombre'])) {
-	require 'views/contenido.view.php';
-} else {
-	header('Location: login.php');
-	die();
-}
-
+session_start();
+$identrenadoractual = $_SESSION["id_entrenador"];
 
 // Conexion a la base de datos
 try {
@@ -16,6 +10,9 @@ try {
     echo "Error: " . $e->getMessage();
     die();
 }
+$sql1 = "SELECT * FROM entrenador WHERE id_entrenador = $identrenadoractual ";
+    $stmt = $conexion->query($sql1);
+    $resultado = $stmt -> fetch();
 // Operación UPDATE - Actualizar información de un Pokémon
 if (isset($_POST["update"])) {
     $id_entrenador = $_POST["id_entrenador"];
@@ -52,7 +49,7 @@ $conexion = null;
     color: red;
             }
         table {
-    width: 400px;
+    width: 300px;
     margin: 0 auto;
     border-collapse: collapse;
     border: 2px solid #000000;
@@ -101,10 +98,43 @@ th {
 input[type="submit"] {
     background-color: #00CED1; /* Color azul turquesa */
 }
+div {
+        width: 50 px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+        background-color: #5F9EA0; /* Pokémon-themed color */
+        }
+
+
+        th {
+        background-color: #4682B4; /* Pokémon-themed color */
+        color: #fff;
+        padding: 5px;
+        }
+
+        td {
+        border: 1px solid #000;
+        padding: 5px;
+        }
     </style>
 </head>
 <body>
     <h2>Actualizar información de entrenadores</h2>
+    <div>
+<table>
+    <tr>
+        <th>nombre</th>
+        <th>nivel</th>
+    </tr>
+    <tr>
+                <td><?php echo $resultado['nombre']; ?></td>
+                <td><?php echo $resultado['nivel']; ?></td>
+    </tr>
+</table>
+</div>
     <table>
         <form action="" method="POST">
             <tr>

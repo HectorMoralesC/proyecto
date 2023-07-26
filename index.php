@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   	<head>
       <meta charset="UTF-8">
@@ -31,9 +31,9 @@
             </a>
           </div>
         </div>
-        <script src="javaScript.js"></script>
+        <script src="javaScript.js"></script> 
     </body>
-</html>
+</html> -->
 
   <?php 
   session_start();
